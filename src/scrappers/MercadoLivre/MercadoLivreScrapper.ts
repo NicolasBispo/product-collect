@@ -30,7 +30,7 @@ export class MercadoLivreScrapper extends BaseScrapper {
   async initialize(): Promise<void> {
     try {
       this.browser = await puppeteer.launch({
-        headless: this.config.headless,
+        headless: this.config?.headless ?? false,
         defaultViewport: null,
         args: ["--no-sandbox", "--disable-setuid-sandbox"],
       });
@@ -69,14 +69,14 @@ export class MercadoLivreScrapper extends BaseScrapper {
       let currentPage = 1;
 
       // Extrair produtos de todas as páginas configuradas
-      while (currentPage <= this.config.maxPages) {
+      while (currentPage <= (this.config?.maxPages ?? 1)) {
         const products = await this.strategy.extractProducts();
         allProducts.push(...products);
 
         // Verificar se há próxima página
-        if (currentPage < this.config.maxPages && await this.strategy.hasNextPage()) {
+        if (currentPage < (this.config?.maxPages ?? 1) && await this.strategy.hasNextPage()) {
           await this.strategy.goToNextPage();
-          await this.delay(this.config.delay);
+          await this.delay(this.config?.delay ?? 2000);
           currentPage++;
         } else {
           break;

@@ -1,0 +1,1 @@
+export { AnuncioService } from './services/AnuncioService'; 

@@ -1,4 +1,6 @@
 import { ScrapperService } from './core/services/ScrapperService';
+import { AnuncioService } from './data/services/AnuncioService';
+import SaveScrapperDataService from './data/services/SaveScrapperDataService';
 import { ITENS_BUSCAVEIS } from './static/itens_buscaveis';
 
 async function main() {
@@ -14,6 +16,10 @@ async function main() {
       maxPages: 1,
       delay: 2000
     });
+
+    const saveScrapperDataService = new SaveScrapperDataService();
+    await saveScrapperDataService.saveData(results, 'mercadolivre');
+
     
     // Exibe os resultados
     console.log('\n📊 Resultados obtidos:');
