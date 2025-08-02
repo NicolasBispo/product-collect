@@ -1,0 +1,23 @@
+{
+  "name": "product-collect",
+  "version": "1.0.0",
+  "description": "Coletor de produtos do Mercado Livre",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts",
+    "scrape": "tsx src/index.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^24.1.0",
+    "prisma": "^6.13.0",
+    "ts-node-dev": "^2.0.0",
+    "tsx": "^4.20.3",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "comander": "^0.0.1-security",
+    "puppeteer": "^24.15.0"
+  }
+}
