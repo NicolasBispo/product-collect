@@ -1,6 +1,6 @@
 import { AnuncioService } from "./AnuncioService";
 import { ProductData } from "../../core";
-import { classificaProduto, extrairTotalDeUnidadesDoTitulo } from "../../static/itens_buscaveis";
+import { extrairTotalDeUnidadesDoTitulo } from "../../static/itens_buscaveis";
 import DataCleanerService from "./DataCleanerService";
 import { HybridClassificationService } from "../../core/services/HybridClassificationService";
 

@@ -6,19 +6,19 @@ export class MercadoLivreSelectors {
   // Campo de busca
   readonly searchInput = '#cb1-edit';
 
-  // Container de produtos
-  readonly productsContainer = '#root-app > div > div.ui-search-main.ui-search-main--without-header.ui-search-main--only-products > section';
+  // Container de produtos - seletores alternativos para maior compatibilidade
+  readonly productsContainer = '#root-app > div > div.ui-search-main.ui-search-main--without-header.ui-search-main--only-products > section, .ui-search-main .ui-search-results';
 
-  readonly productItem = "li.ui-search-layout__item";
+  readonly productItem = "li.ui-search-layout__item, .ui-search-layout__item";
 
   // Elementos dos produtos
-  readonly title = '.poly-component__title';
-  readonly price = '.andes-money-amount__fraction';
-  readonly link = '.poly-component__title-wrapper a';
+  readonly title = '.poly-component__title, .ui-search-item__title';
+  readonly price = '.andes-money-amount__fraction, .price-tag-fraction';
+  readonly link = '.poly-component__title-wrapper a, .ui-search-item__title a';
   readonly image = 'img';
 
-  // Navegação
-  readonly nextPageButton = '#root-app > div > div.ui-search-main.ui-search-main--only-products.ui-search-main--with-topkeywords > section > div:nth-child(6) > nav > ul > li.andes-pagination__button.andes-pagination__button--next > a';
+  // Navegação - múltiplos seletores para maior compatibilidade
+  readonly nextPageButton = '.andes-pagination__button--next a, .andes-pagination__button.andes-pagination__button--next a, [data-testid="pagination-next"], .andes-pagination__button--next, .ui-search-pagination__next';
 
   // Outros seletores úteis
   readonly searchResultsContainer = '#root-app > div > div.ui-search-main.ui-search-main--only-products.ui-search-main--with-topkeywords > section > div:nth-child(5) > ol';

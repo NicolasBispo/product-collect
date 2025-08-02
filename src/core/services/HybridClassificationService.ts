@@ -73,7 +73,7 @@ export class HybridClassificationService {
       type,
       confidence,
       extractedInfo: { 
-        quantity,
+        quantity: quantity || undefined,
         components: this.extractComponentsFromTitle(title),
         brand: this.extractBrandFromTitle(title)
       },
@@ -86,9 +86,10 @@ export class HybridClassificationService {
     
     // Palavras-chave específicas para cada tipo
     const keywords: Record<TipoProduto, string[]> = {
-      kit: ['kit', 'combo', 'pacote', 'conjunto'],
+      equipo_e_frasco: ['kit', 'combo', 'pacote', 'conjunto'],
       frasco: ['frasco', 'garrafa', 'recipiente', 'frs'],
       equipo: ['equipo', 'tubo', 'sonda', 'extensor'],
+      seringa: ['seringa', 'seringas'],
       outro: []
     };
     

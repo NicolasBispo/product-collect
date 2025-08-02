@@ -1,9 +1,7 @@
 import { TipoProduto } from "../core/prisma";
 
 export const ITENS_BUSCAVEIS = [
-  "Frasco de dieta enteral",
-  "Equipo de dieta enteral",
-  "Seringa 20ML de dieta enteral",
+  "Seringa dosadora 20ML",
 ];
 
 export function classificaProduto(titulo: string): TipoProduto {
@@ -14,18 +12,30 @@ export function classificaProduto(titulo: string): TipoProduto {
   const temSeringa = ["seringa", "seringas"].some(p => lower.includes(p));
   const temKit = ["kit"].some(p => lower.includes(p));
 
-  // Se tem "kit" no título, é sempre um kit
-  if (temKit) return "kit";
+  // Se tem "kit" no título, precisa verificar o conteúdo
+  if (temKit) {
+    // Se tem frasco e equipo (com ou sem seringa), é equipo e frasco
+    if (temFrasco && temEquipo) return "equipo_e_frasco";
+    // Se tem apenas seringas, é seringa
+    if (temSeringa && !temFrasco && !temEquipo) return "seringa";
+    // Se tem apenas frascos, é frasco
+    if (temFrasco && !temEquipo && !temSeringa) return "frasco";
+    // Se tem apenas equipos, é equipo
+    if (temEquipo && !temFrasco && !temSeringa) return "equipo";
+    // Se tem frasco e seringa (sem equipo), é frasco
+    if (temFrasco && temSeringa && !temEquipo) return "frasco";
+    // Se tem equipo e seringa (sem frasco), é equipo
+    if (temEquipo && temSeringa && !temFrasco) return "equipo";
+    // Caso padrão para kits mistos: equipo e frasco
+    return "equipo_e_frasco";
+  }
   
-  // Se tem frasco e equipo, é um kit
-  if (temFrasco && temEquipo) return "kit";
-  
-  // Se tem frasco, equipo e seringa, é um kit
-  if (temFrasco && temEquipo && temSeringa) return "kit";
+  // Se tem frasco e equipo (sem ser kit), é equipo e frasco
+  if (temFrasco && temEquipo) return "equipo_e_frasco";
   
   if (temFrasco) return "frasco";
   if (temEquipo) return "equipo";
-  if (temSeringa) return "outro"; // seringa não está no enum, classificando como outro
+  if (temSeringa) return "seringa";
 
   return "outro";
 }

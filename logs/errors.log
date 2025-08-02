@@ -1,0 +1,115 @@
+[2025-08-02T14:54:52.383Z] WARNING [AnunciosController.getById]: Anúncio com ID custo-beneficio não encontrado
+[2025-08-02T15:01:29.981Z] WARNING [AnunciosController.getById]: Anúncio com ID custo-beneficio não encontrado
+[2025-08-02T15:01:58.270Z] WARNING [AnunciosController.getById]: Anúncio com ID custo-beneficio não encontrado
+[2025-08-02T16:05:14.520Z] ERROR [AnunciosController.custoBeneficio]: 
+Invalid `prisma.anuncio.findMany()` invocation in
+/Users/nicolasbispo/projetosnicolas/product-collect/src/api/routes/anuncios.ts:175:43
+
+  172 }
+  173 
+  174 // Buscar anúncios com quantidade e preço válidos
+→ 175 const anuncios = await prisma.anuncio.findMany({
+        where: {
+          disponivel: true,
+          quantidadeEmItens: {
+            not: null
+          },
+          precoEmCentavos: {
+            gt: 0
+          },
+          tipoProduto: "equipo_e_frasco"
+                       ~~~~~~~~~~~~~~~~~
+        },
+        orderBy: {
+          createdAt: "desc"
+        }
+      })
+
+Invalid value for argument `tipoProduto`. Expected TipoProduto.
+Stack: PrismaClientValidationError: 
+Invalid `prisma.anuncio.findMany()` invocation in
+/Users/nicolasbispo/projetosnicolas/product-collect/src/api/routes/anuncios.ts:175:43
+
+  172 }
+  173 
+  174 // Buscar anúncios com quantidade e preço válidos
+→ 175 const anuncios = await prisma.anuncio.findMany({
+        where: {
+          disponivel: true,
+          quantidadeEmItens: {
+            not: null
+          },
+          precoEmCentavos: {
+            gt: 0
+          },
+          tipoProduto: "equipo_e_frasco"
+                       ~~~~~~~~~~~~~~~~~
+        },
+        orderBy: {
+          createdAt: "desc"
+        }
+      })
+
+Invalid value for argument `tipoProduto`. Expected TipoProduto.
+    at _n (/Users/nicolasbispo/projetosnicolas/product-collect/generated/prisma/runtime/library.js:32:1363)
+    at ri.handleRequestError (/Users/nicolasbispo/projetosnicolas/product-collect/generated/prisma/runtime/library.js:124:7102)
+    at ri.handleAndLogRequestError (/Users/nicolasbispo/projetosnicolas/product-collect/generated/prisma/runtime/library.js:124:6784)
+    at ri.request (/Users/nicolasbispo/projetosnicolas/product-collect/generated/prisma/runtime/library.js:124:6491)
+    at async l (/Users/nicolasbispo/projetosnicolas/product-collect/generated/prisma/runtime/library.js:133:9812)
+    at async <anonymous> (/Users/nicolasbispo/projetosnicolas/product-collect/src/api/routes/anuncios.ts:175:22)
+[2025-08-02T16:05:33.698Z] ERROR [AnunciosController.custoBeneficio]: 
+Invalid `prisma.anuncio.findMany()` invocation in
+/Users/nicolasbispo/projetosnicolas/product-collect/src/api/routes/anuncios.ts:175:43
+
+  172 }
+  173 
+  174 // Buscar anúncios com quantidade e preço válidos
+→ 175 const anuncios = await prisma.anuncio.findMany({
+        where: {
+          disponivel: true,
+          quantidadeEmItens: {
+            not: null
+          },
+          precoEmCentavos: {
+            gt: 0
+          },
+          tipoProduto: "equipo_e_frasco"
+                       ~~~~~~~~~~~~~~~~~
+        },
+        orderBy: {
+          createdAt: "desc"
+        }
+      })
+
+Invalid value for argument `tipoProduto`. Expected TipoProduto.
+Stack: PrismaClientValidationError: 
+Invalid `prisma.anuncio.findMany()` invocation in
+/Users/nicolasbispo/projetosnicolas/product-collect/src/api/routes/anuncios.ts:175:43
+
+  172 }
+  173 
+  174 // Buscar anúncios com quantidade e preço válidos
+→ 175 const anuncios = await prisma.anuncio.findMany({
+        where: {
+          disponivel: true,
+          quantidadeEmItens: {
+            not: null
+          },
+          precoEmCentavos: {
+            gt: 0
+          },
+          tipoProduto: "equipo_e_frasco"
+                       ~~~~~~~~~~~~~~~~~
+        },
+        orderBy: {
+          createdAt: "desc"
+        }
+      })
+
+Invalid value for argument `tipoProduto`. Expected TipoProduto.
+    at _n (/Users/nicolasbispo/projetosnicolas/product-collect/generated/prisma/runtime/library.js:32:1363)
+    at ri.handleRequestError (/Users/nicolasbispo/projetosnicolas/product-collect/generated/prisma/runtime/library.js:124:7102)
+    at ri.handleAndLogRequestError (/Users/nicolasbispo/projetosnicolas/product-collect/generated/prisma/runtime/library.js:124:6784)
+    at ri.request (/Users/nicolasbispo/projetosnicolas/product-collect/generated/prisma/runtime/library.js:124:6491)
+    at async l (/Users/nicolasbispo/projetosnicolas/product-collect/generated/prisma/runtime/library.js:133:9812)
+    at async <anonymous> (/Users/nicolasbispo/projetosnicolas/product-collect/src/api/routes/anuncios.ts:175:22)

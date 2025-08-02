@@ -1,0 +1,9 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+
+
+Sempre use o yarn para instalar dependencias
+Voce ate pode compilar o projeto com o yarn build, mas nunca o execute com o yarn start ou compile javascript diretamente.

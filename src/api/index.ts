@@ -18,7 +18,7 @@ app.use(requestLogger);
 app.use('/api/anuncios', anunciosRouter);
 
 // Rota de teste
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
   res.json({ mensagem: 'API de Anúncios funcionando!' });
 });
 

@@ -5,7 +5,6 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js",
     "scrape": "tsx src/index.ts",
     "api": "tsx src/api/index.ts"
   },

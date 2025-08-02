@@ -7,7 +7,7 @@ import { MercadoLivreScrapper, MercadoLivreConfig } from '../../scrappers/Mercad
 export interface BaseScrapperConfig {
   headless?: boolean;
   delay?: number;
-  maxPages?: number;
+  maxPages?: number | 'allPages'; // Suporta número específico ou 'allPages'
 }
 
 /**

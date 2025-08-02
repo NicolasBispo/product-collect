@@ -1,0 +1,6 @@
+---
+alwaysApply: true
+---
+
+
+Quando for realizar mudancas na logica dos scrappers nunca alterar seletores de css sem antes perguntar se o mesmo esta correto ou perguntar para mim, nunca prossiga com essas alterações sem me perguntar

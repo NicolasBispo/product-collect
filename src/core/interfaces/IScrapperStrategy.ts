@@ -6,6 +6,11 @@ import { ProductData } from '../types/ProductData';
  */
 export interface IScrapperStrategy {
   /**
+   * Navega para a página inicial do site
+   */
+  navigateToHomePage(): Promise<void>;
+
+  /**
    * Extrai dados de produtos da página atual
    */
   extractProducts(): Promise<Omit<ProductData, 'source' | 'extractedAt'>[]>;

@@ -17,8 +17,8 @@ export class MercadoLivreScrapper extends BaseScrapper {
     super('mercadolivre');
     this.config = {
       headless: false,
-      delay: 2000,
-      maxPages: 1,
+      delay: 1000, // Reduzido de 2000ms para 1000ms
+      maxPages: 3, // Aumenta o padrão para 3 páginas
       ...config
     };
     this.strategy = new MercadoLivreStrategy();
@@ -61,37 +61,97 @@ export class MercadoLivreScrapper extends BaseScrapper {
 
     try {
       console.log(`🔍 Buscando no MercadoLivre: ${term}`);
+      console.log(`⚙️ Configuração: maxPages=${this.config?.maxPages ?? 1}, delay=${this.config?.delay ?? 2000}ms`);
       
-      // Realizar busca
+      // 1. Navegar para homepage e realizar busca
+      console.log("🏠 Navegando para página inicial...");
+      await this.strategy.navigateToHomePage();
+      
+      console.log("🔍 Realizando busca...");
       await this.strategy.performSearch(term);
       
       const allProducts: Omit<ProductData, 'source' | 'extractedAt'>[] = [];
       let currentPage = 1;
 
-      // Extrair produtos de todas as páginas configuradas
-      while (currentPage <= (this.config?.maxPages ?? 1)) {
+      // 2. Extrair produtos de todas as páginas disponíveis
+      while (this.shouldContinuePagination(currentPage)) {
+        console.log(`\n📄 === PROCESSANDO PÁGINA ${currentPage} ===`);
+        
+        // Aguarda um pouco para garantir que a página carregou completamente
+        console.log("⏳ Aguardando carregamento da página...");
+        await this.delay(500); // Reduzido de 1000ms para 500ms
+        
+        // Extrai produtos da página atual
+        console.log("🔄 Iniciando extração de produtos da página atual...");
         const products = await this.strategy.extractProducts();
         allProducts.push(...products);
+        
+        console.log(`📊 Total de produtos coletados até agora: ${allProducts.length}`);
 
-        // Verificar se há próxima página
-        if (currentPage < (this.config?.maxPages ?? 1) && await this.strategy.hasNextPage()) {
-          await this.strategy.goToNextPage();
-          await this.delay(this.config?.delay ?? 2000);
-          currentPage++;
+        // Debug dos seletores após extração
+        console.log("🔍 Executando debug dos seletores...");
+        await this.strategy.debugSelectors();
+
+        // 3. Verificar se há próxima página
+        console.log("🔍 Verificando se há próxima página disponível...");
+        const hasNext = await this.strategy.hasNextPage();
+        
+        if (hasNext && this.shouldContinuePagination(currentPage + 1)) {
+          console.log(`➡️ Navegando para página ${currentPage + 1}...`);
+          const navigationSuccess = await this.strategy.goToNextPage();
+          
+          if (navigationSuccess) {
+            console.log(`⏳ Aguardando ${this.config?.delay ?? 1000}ms antes da próxima coleta...`);
+            await this.delay(this.config?.delay ?? 1000);
+            currentPage++;
+            console.log(`✅ Navegação para página ${currentPage} concluída`);
+          } else {
+            console.log("⚠️ Falha ao navegar para próxima página, parando coleta");
+            break;
+          }
         } else {
+          if (!hasNext) {
+            console.log("🏁 Não há mais páginas disponíveis, finalizando coleta");
+          } else {
+            console.log(`🏁 Atingiu o limite de páginas, finalizando coleta`);
+          }
           break;
         }
       }
 
-      // Enriquecer dados com metadados
+      // 4. Enriquecer dados com metadados
+      console.log("🔄 Enriquecendo dados com metadados...");
       const enrichedProducts = this.enrichProductData(allProducts);
       
-      console.log(`✅ Extraídos ${enrichedProducts.length} produtos do MercadoLivre`);
+      console.log(`\n🎉 === COLETA FINALIZADA ===`);
+      console.log(`✅ Extraídos ${enrichedProducts.length} produtos do MercadoLivre para "${term}"`);
+      console.log(`📊 Páginas processadas: ${currentPage - 1}`);
+      console.log(`📈 Produtos por página média: ${enrichedProducts.length > 0 ? Math.round(enrichedProducts.length / (currentPage - 1)) : 0}`);
+      
       return enrichedProducts;
     } catch (error) {
       console.error(`❌ Erro ao buscar "${term}" no MercadoLivre:`, error);
       throw error;
     }
+  }
+
+  /**
+   * Verifica se deve continuar a paginação baseado na configuração
+   */
+  private shouldContinuePagination(currentPage: number): boolean {
+    const maxPages = this.config?.maxPages ?? 3;
+    
+    if (maxPages === 'allPages') {
+      return true; // Sempre continua se configurado para todas as páginas
+    }
+    
+    // Se maxPages é um número, verifica se não excedeu o limite
+    if (typeof maxPages === 'number') {
+      return currentPage <= maxPages;
+    }
+    
+    // Fallback para 3 páginas se não especificado
+    return currentPage <= 3;
   }
 
   /**
@@ -114,5 +174,5 @@ export class MercadoLivreScrapper extends BaseScrapper {
 export interface MercadoLivreConfig {
   headless?: boolean;
   delay?: number;
-  maxPages?: number;
+  maxPages?: number | 'allPages'; // Suporta número específico ou 'allPages'
 } 

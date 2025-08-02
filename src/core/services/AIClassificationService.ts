@@ -55,10 +55,10 @@ export class AIClassificationService {
     
     // Mapeamento de labels para tipos do sistema
     const labelMapping: Record<string, TipoProduto> = {
-      'kit': 'kit',
+      'kit': 'equipo_e_frasco',
       'frasco': 'frasco', 
       'equipo': 'equipo',
-      'seringa': 'outro',
+      'seringa': 'seringa',
       'outro': 'outro'
     };
 
@@ -84,7 +84,7 @@ export class AIClassificationService {
 
     return {
       quantity: this.extractQuantityFromTitle(title),
-      components,
+      components: components.length > 0 ? components : undefined,
       brand: this.extractBrandFromTitle(title)
     };
   }
@@ -92,7 +92,7 @@ export class AIClassificationService {
   private extractQuantityFromTitle(title: string): number | undefined {
     // Extração básica de quantidade usando regex
     const quantityMatch = title.match(/(\d+)/);
-    return quantityMatch ? parseInt(quantityMatch[1]) : undefined;
+    return quantityMatch && quantityMatch[1] ? parseInt(quantityMatch[1]) : undefined;
   }
 
   private extractBrandFromTitle(title: string): string | undefined {
@@ -116,14 +116,40 @@ export class AIClassificationService {
     let type: TipoProduto = 'outro';
     let confidence = 0.5;
 
-    if (lowerTitle.includes('kit')) {
-      type = 'kit';
+    const temFrasco = lowerTitle.includes('frasco');
+    const temEquipo = lowerTitle.includes('equipo');
+    const temSeringa = lowerTitle.includes('seringa');
+    const temKit = lowerTitle.includes('kit');
+
+    if (temKit) {
+      // Se tem "kit" no título, precisa verificar o conteúdo
+      if (temFrasco && temEquipo) {
+        type = 'equipo_e_frasco';
+        confidence = 0.8;
+      } else if (temSeringa && !temFrasco && !temEquipo) {
+        type = 'seringa';
+        confidence = 0.8;
+      } else if (temFrasco && !temEquipo && !temSeringa) {
+        type = 'frasco';
+        confidence = 0.8;
+      } else if (temEquipo && !temFrasco && !temSeringa) {
+        type = 'equipo';
+        confidence = 0.8;
+      } else {
+        type = 'equipo_e_frasco';
+        confidence = 0.7;
+      }
+    } else if (temFrasco && temEquipo) {
+      type = 'equipo_e_frasco';
       confidence = 0.8;
-    } else if (lowerTitle.includes('frasco')) {
+    } else if (temFrasco) {
       type = 'frasco';
       confidence = 0.7;
-    } else if (lowerTitle.includes('equipo')) {
+    } else if (temEquipo) {
       type = 'equipo';
+      confidence = 0.7;
+    } else if (temSeringa) {
+      type = 'seringa';
       confidence = 0.7;
     }
 

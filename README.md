@@ -108,7 +108,7 @@ O sistema usa uma abordagem híbrida para classificar produtos:
 ```bash
 curl -X POST http://localhost:3000/api/anuncios/classify \
   -H "Content-Type: application/json" \
-  -d '{"title": "Kit 30 Und- Equipo Dieta Enteral, Frasco 300ml, Seringa 20ml"}'
+  -d '{"title": "Equipo e Frasco 30 Und- Equipo Dieta Enteral, Frasco 300ml, Seringa 20ml"}'
 ```
 
 **Resposta:**
@@ -116,7 +116,7 @@ curl -X POST http://localhost:3000/api/anuncios/classify \
 {
   "sucesso": true,
   "resultado": {
-    "type": "kit",
+    "type": "equipo_e_frasco",
     "confidence": 0.95,
     "extractedInfo": {
       "quantity": 30,

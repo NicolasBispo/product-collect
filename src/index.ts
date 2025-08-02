@@ -12,7 +12,7 @@ async function main() {
     // Executa o scraping usando a nova arquitetura
     const results = await service.searchInScrapper('mercadolivre', ITENS_BUSCAVEIS, {
       headless: false, // Para debug, alterar para true em produção
-      maxPages: 1,
+      maxPages: "allPages",
       delay: 2000
     });
 

@@ -12,30 +12,30 @@ generator client {
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
-  
 }
 
 enum TipoProduto {
   frasco
   equipo
-  kit
+  equipo_e_frasco
+  seringa
   outro
 }
 
 model Anuncio {
-  id                String   @id @default(uuid())
-  link              String   @unique
-  tituloAnuncio     String
-  precoEmCentavos   Int
-  quantidadeEmItens Int?
-  disponivel        Boolean  @default(true)
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
-  tipoProduto       TipoProduto
+  id                 String      @id @default(uuid())
+  link               String      @unique
+  tituloAnuncio      String
+  precoEmCentavos    Int
+  quantidadeEmItens  Int?
+  disponivel         Boolean     @default(true)
+  createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @updatedAt
+  tipoProduto        TipoProduto
   // Autoreferência para variantes
   anuncioPrincipalId String?
-  anuncioPrincipal   Anuncio?  @relation("AnuncioVariantes", fields: [anuncioPrincipalId], references: [id], onDelete: Cascade)
-  variantes          Anuncio[] @relation("AnuncioVariantes")
-  slug              String   @unique
-  provedorDaBusca   String  
+  anuncioPrincipal   Anuncio?    @relation("AnuncioVariantes", fields: [anuncioPrincipalId], references: [id], onDelete: Cascade)
+  variantes          Anuncio[]   @relation("AnuncioVariantes")
+  slug               String      @unique
+  provedorDaBusca    String
 }
