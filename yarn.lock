@@ -153,6 +153,24 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.25.8.tgz#610d7ea539d2fcdbe39237b5cc175eb2c4451f9c"
   integrity sha512-cn3Yr7+OaaZq1c+2pe+8yxC8E144SReCQjN6/2ynubzYjvyqZjTXfQJpAcQpsdJq3My7XADANiYGHoFC69pLQw==
 
+"@huggingface/inference@^4.6.1":
+  version "4.6.1"
+  resolved "https://registry.yarnpkg.com/@huggingface/inference/-/inference-4.6.1.tgz#38c9567e08ae3cb255cb459eb48691f9de870ed2"
+  integrity sha512-GjEYAoW88rZKthi4OTP+Lq0yi82MywVKEKm2zLDR6BePCinpDyhTPracDPBXSl4guxenYKcoKmitFjqS/zk/sg==
+  dependencies:
+    "@huggingface/jinja" "^0.5.1"
+    "@huggingface/tasks" "^0.19.33"
+
+"@huggingface/jinja@^0.5.1":
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/@huggingface/jinja/-/jinja-0.5.1.tgz#081d334ddcf6237f65561ae3d665bb713a8ff74f"
+  integrity sha512-yUZLld4lrM9iFxHCwFQ7D1HW2MWMwSbeB7WzWqFYDWK+rEb+WldkLdAJxUPOmgICMHZLzZGVcVjFh3w/YGubng==
+
+"@huggingface/tasks@^0.19.33":
+  version "0.19.34"
+  resolved "https://registry.yarnpkg.com/@huggingface/tasks/-/tasks-0.19.34.tgz#44243d6531b9236570794324e6f9ae9d7eff6a22"
+  integrity sha512-dIl3jyeddCEFJeogJOcbhfIq1tlo3N9K4EAxG/MfkGL0l7hI2kfs91Ut+1h6i09TQM8A9XM91NV7Jz6PgfWE7Q==
+
 "@jridgewell/resolve-uri@^3.0.3":
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/@jridgewell/resolve-uri/-/resolve-uri-3.1.2.tgz#7a0ee601f60f99a20c7c7c5ff0c80388c1189bd6"

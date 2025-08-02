@@ -17,6 +17,16 @@ export { ScrapperBuilder } from './builders/ScrapperBuilder';
 // Services
 export { ScrapperService } from './services/ScrapperService';
 
+// IA Services
+export { AIClassificationService } from './services/AIClassificationService';
+export { HybridClassificationService } from './services/HybridClassificationService';
+
+// Logging Services
+export { LogService } from './services/LogService';
+
+// IA Types
+export * from './types/AIClassification';
+
 // Database
 export { prisma, desconectarPrisma } from './prisma';
 export type { PrismaClient } from './prisma'; 

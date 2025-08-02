@@ -19,6 +19,7 @@
     "typescript": "^5.9.2"
   },
   "dependencies": {
+    "@huggingface/inference": "^4.6.1",
     "@prisma/client": "6.13.0",
     "comander": "^0.0.1-security",
     "express": "^5.1.0",

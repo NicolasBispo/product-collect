@@ -1,0 +1,12 @@
+[2025-08-02T13:54:02.872Z] INFO [LogService]: Logs limpos com sucesso
+[2025-08-02T13:54:02.875Z] API REQUEST [DELETE /logs] Status: 200 Time: 5ms 
+[2025-08-02T13:54:10.451Z] API REQUEST [GET /logs] Status: 200 Time: 1ms 
+[2025-08-02T13:54:14.490Z] INFO [AnunciosController.classify]: Iniciando classificação para título: Teste de classificação
+[2025-08-02T13:54:14.491Z] INFO [HybridClassificationService]: Iniciando classificação híbrida para: Teste de classificação
+[2025-08-02T13:54:14.492Z] INFO [HybridClassificationService]: Análise mecânica: tipo=outro, quantidade=null, confiança=0.5
+[2025-08-02T13:54:14.492Z] INFO [HybridClassificationService]: Análise mecânica: outro (confiança: 0.5)
+[2025-08-02T13:54:14.492Z] INFO [HybridClassificationService]: IA desabilitada, usando apenas classificação mecânica
+[2025-08-02T13:54:14.493Z] INFO [AnunciosController.classify]: Classificação concluída: outro (confiança: 0.5)
+[2025-08-02T13:54:14.494Z] API REQUEST [POST /classify] Status: 200 Time: 4ms 
+[2025-08-02T13:54:17.832Z] API REQUEST [GET /logs] Status: 200 Time: 1ms 
+[2025-08-02T13:54:21.380Z] API REQUEST [GET /logs] Status: 200 Time: 1ms 
