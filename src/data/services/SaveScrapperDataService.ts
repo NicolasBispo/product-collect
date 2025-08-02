@@ -1,6 +1,6 @@
 import { AnuncioService } from "./AnuncioService";
 import { ProductData } from "../../core";
-import { classificaProduto } from "../../static/itens_buscaveis";
+import { classificaProduto, extrairTotalDeUnidadesDoTitulo } from "../../static/itens_buscaveis";
 import DataCleanerService from "./DataCleanerService";
 
 export default class SaveScrapperDataService {
@@ -20,7 +20,7 @@ export default class SaveScrapperDataService {
             link: product.link,
             tituloAnuncio: product.title,
             precoEmCentavos,
-            quantidadeEmItens: 1,
+            quantidadeEmItens: extrairTotalDeUnidadesDoTitulo(product.title),
             provedorDaBusca: provedorDaBusca,
             tipoProduto: classificaProduto(product.title),
           })

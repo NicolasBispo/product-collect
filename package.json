@@ -6,10 +6,11 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
-    "dev": "tsx src/index.ts",
-    "scrape": "tsx src/index.ts"
+    "scrape": "tsx src/index.ts",
+    "api": "tsx src/api/index.ts"
   },
   "devDependencies": {
+    "@types/express": "^5.0.3",
     "@types/lodash": "^4.17.20",
     "@types/node": "^24.1.0",
     "prisma": "^6.13.0",
@@ -20,6 +21,7 @@
   "dependencies": {
     "@prisma/client": "6.13.0",
     "comander": "^0.0.1-security",
+    "express": "^5.1.0",
     "lodash": "^4.17.21",
     "puppeteer": "^24.15.0"
   }

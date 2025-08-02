@@ -48,7 +48,7 @@ export class AnuncioService {
     link: string;
     tituloAnuncio: string;
     precoEmCentavos: number;
-    quantidadeEmItens: number;
+    quantidadeEmItens: number | null;
     disponivel?: boolean;
     anuncioPrincipalId?: string;
     provedorDaBusca: string;

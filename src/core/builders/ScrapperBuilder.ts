@@ -1,6 +1,5 @@
 import { IScrapper } from '../interfaces/IScrapper';
 import { ScrapperFactory, BaseScrapperConfig } from '../factories/ScrapperFactory';
-import { MercadoLivreConfig } from '../../scrappers/MercadoLivre';
 
 /**
  * Builder para configuração de scrapers
@@ -64,6 +63,6 @@ export class ScrapperBuilder {
       maxPages: this.maxPages
     };
 
-    return ScrapperFactory.createScrapper(this.type, finalConfig);
+    return ScrapperFactory.createScrapper(this.type as 'mercadolivre', finalConfig);
   }
 } 

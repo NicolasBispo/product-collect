@@ -18,16 +18,17 @@ async function testArchitecture() {
     const isSupported = ScrapperFactory.isSupported('mercadolivre');
     console.log(`   MercadoLivre suportado: ${isSupported}`);
     
-    // Teste 2: Builder
-    console.log('\n2. Testando Builder...');
-    const scrapper = new ScrapperBuilder()
+    // Teste do builder
+    console.log('\n🔧 Testando ScrapperBuilder...');
+    const scrapperBuilder = new ScrapperBuilder()
       .withType('mercadolivre')
-      .withHeadless(true)
-      .withDelay(1000)
-      .withMaxPages(1)
+      .withHeadless(false)
+      .withDelay(3000)
+      .withMaxPages(2)
       .build();
-    
-    console.log('   Builder criado com sucesso');
+
+    console.log('✅ ScrapperBuilder funcionando corretamente');
+    console.log(`   Tipo do scrapper: ${scrapperBuilder.constructor.name}`);
     
     // Teste 3: Service
     console.log('\n3. Testando Service...');

@@ -1,5 +1,4 @@
 import { ScrapperService } from './core/services/ScrapperService';
-import { AnuncioService } from './data/services/AnuncioService';
 import SaveScrapperDataService from './data/services/SaveScrapperDataService';
 import { ITENS_BUSCAVEIS } from './static/itens_buscaveis';
 

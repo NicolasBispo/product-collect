@@ -18,7 +18,7 @@ export class MercadoLivreSelectors {
   readonly image = 'img';
 
   // Navegação
-  readonly nextPageButton = '#root-app > div > div.ui-search-main.ui-search-main--only-products.ui-search-main--with-topkeywords > section > div:nth-child(6) > nav > ul > li.andes-pagination__button.andes-pagination__button--next ';
+  readonly nextPageButton = '#root-app > div > div.ui-search-main.ui-search-main--only-products.ui-search-main--with-topkeywords > section > div:nth-child(6) > nav > ul > li.andes-pagination__button.andes-pagination__button--next > a';
 
   // Outros seletores úteis
   readonly searchResultsContainer = '#root-app > div > div.ui-search-main.ui-search-main--only-products.ui-search-main--with-topkeywords > section > div:nth-child(5) > ol';

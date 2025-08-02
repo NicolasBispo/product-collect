@@ -169,6 +169,7 @@ export class MercadoLivreStrategy implements IScrapperStrategy {
       const nextPageButton = await this.page.$(this.selectors.nextPageButton);
       
       if (nextPageButton) {
+        console.log("Navegando para a próxima página");
         await nextPageButton.click();
         await this.page.waitForNavigation(); // Aguarda carregamento
         console.log("✅ Navegou para a próxima página");
